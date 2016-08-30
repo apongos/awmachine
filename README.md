@@ -22,7 +22,7 @@ sudo pip install virtualenv
 ### Clone and serve
 
 `````bash
-git clone https://github.com/codekansas/awmachine
+git clone https://github.com/apongos/awmachine
 cd awmachine
 virtualenv venv
 source venv/bin/activate
