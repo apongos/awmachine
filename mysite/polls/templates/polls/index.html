@@ -1,0 +1,9 @@
+{% if latest_comment_list %}
+    <ul>
+    {% for comment in latest_comment_list %}
+        <li><a href="{% url 'polls:detail' comment.id %}">{{ comment.comment_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
