@@ -3,6 +3,7 @@ from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Comment, Choice
 
@@ -15,7 +16,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Return the last five published comments."""
-        return Comment.objects.order_by('-pub_date')[:5]
+        return Comment.objects.order_by('-pub_date')[:10]
 
 
 class DetailView(generic.DetailView):
@@ -26,6 +27,14 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Comment
     template_name = 'polls/results.html'
+
+class NewStatementView(generic.DetailView):
+	model = Comment
+	template_name = 'polls/comment_form.html'
+
+class StatementCreate(CreateView):
+	model = Comment
+	fields = ['comment_text']
 
 
 #Views
@@ -62,5 +71,13 @@ def index(request):
         'latest_comment_list': latest_comment_list,
     }
     return HttpResponse(template.render(context, request))
+
+def newStatement(request, comment):
+	new_statement = Comment(comment_text="comment")
+	template = loader.get_template('polls/new.html')
+	context = {
+        'new_statement': new_statement,
+    }
+	return HttpResponse(reverse('polls:results'))
 
 # Leave the rest of the views (detail, results, vote) unchanged

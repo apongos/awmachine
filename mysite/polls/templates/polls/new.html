@@ -1,0 +1,13 @@
+<h1>New Problematic Statement Entry</h1>
+
+<form action="{% url 'polls:new' comment.id %}" method="post">
+
+ <dt>Source:</dt>
+      <dd><input type ='text' size='30' name='name' required></dd>
+
+<dt>Statement:</dt>
+      <dd><textarea name = 'description' rows='5' cols='40' required></textarea></dd>
+
+<input type='submit' value='Create'>
+
+</form>

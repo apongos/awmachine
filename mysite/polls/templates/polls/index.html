@@ -1,8 +1,12 @@
 {% if latest_comment_list %}
+<h1>List of Most Recently Uploaded Statements</h1>
     <ul>
     {% for comment in latest_comment_list %}
         <li><a href="{% url 'polls:detail' comment.id %}">{{ comment.comment_text }}</a></li>
     {% endfor %}
+
+<h4><a href="{% url 'polls:comment-new' %}"</a>Add new Problematic Statement</h4>
+
     </ul>
 {% else %}
     <p>No polls are available.</p>
