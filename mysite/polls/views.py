@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -36,6 +37,13 @@ class StatementCreate(CreateView):
 	model = Comment
 	fields = ['comment_text']
 
+class StatementUpdate(UpdateView):
+	model = Comment
+	fields = ['comment_text']
+
+class StatementDelete(DeleteView):
+	model = Comment
+	success_url = reverse_lazy('polls:index')
 
 #Views
 def detail(request, comment_id):

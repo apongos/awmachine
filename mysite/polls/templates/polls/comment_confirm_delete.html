@@ -1,0 +1,6 @@
+<p>Comfirm Delete of Following Statment:</p>
+{{comment.comment_text}}
+<form method="POST" action="{% url 'polls:comment-delete' comment.id %}">
+   {% csrf_token %}
+   <input type="submit" value="DELETE">
+</form>
