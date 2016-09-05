@@ -22,5 +22,8 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
+
     def __str__(self):
     	return self.choice_text
+    def get_absolute_url(self):
+        return reverse('polls:index' )

@@ -47,12 +47,9 @@ class StatementDelete(DeleteView):
 
 #Generic for Counter Argument
 
-#class CounterArgCreate(generic.DetailView):
-#	model = Choice
-#	template_name = 'polls/new_counter_arg.html'
-
 class CounterArgCreate(CreateView):
     model = Choice
+    fields = ['comment','choice_text',]
 
 #View for Voting Function
 
