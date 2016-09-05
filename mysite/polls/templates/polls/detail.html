@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
 <h1>{{ comment.comment_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -10,3 +14,5 @@
 {% endfor %}
 <input type="submit" value="Vote" />
 </form>
+
+<a href="{% url 'polls:counter-argument-new' comment.id%}"> Create Counter Argument </a>

@@ -1,8 +1,12 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
 {% if latest_comment_list %}
 <h1>List of Most Recently Uploaded Statements</h1>
     <ul>
     {% for comment in latest_comment_list %}
-        <li><a href="{% url 'polls:detail' comment.id %}">{{ comment.comment_text }} </a>
+        <li><a href="{% url 'polls:detail' comment.id %}">{{ comment.comment_text }} </a> <br>
         	<a href="{% url 'polls:comment-delete' comment.id%}"> Delete</a>
         	<a href="{% url 'polls:comment-update' comment.id%}"> Edit</a>
 	

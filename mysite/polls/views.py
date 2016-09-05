@@ -10,7 +10,7 @@ from .models import Comment, Choice
 
 # Create your views here.
 
-#Generic
+#Generics for Problematic Statement
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_comment_list'
@@ -24,7 +24,6 @@ class DetailView(generic.DetailView):
     model = Comment
     template_name = 'polls/detail.html'
 
-
 class ResultsView(generic.DetailView):
     model = Comment
     template_name = 'polls/results.html'
@@ -33,6 +32,7 @@ class NewStatementView(generic.DetailView):
 	model = Comment
 	template_name = 'polls/comment_form.html'
 
+# CRUD functionality for Comments
 class StatementCreate(CreateView):
 	model = Comment
 	fields = ['comment_text']
@@ -45,14 +45,17 @@ class StatementDelete(DeleteView):
 	model = Comment
 	success_url = reverse_lazy('polls:index')
 
-#Views
-def detail(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    return render(request, 'polls/detail.html', {'comment': comment})
+#Generic for Counter Argument
 
-def results(request, comment_id):
-    comment = get_object_or_404(Comment, pk=comment_id)
-    return render(request, 'polls/results.html', {'comment': comment})
+#class CounterArgCreate(generic.DetailView):
+#	model = Choice
+#	template_name = 'polls/new_counter_arg.html'
+
+class CounterArgCreate(CreateView):
+    model = Choice
+
+#View for Voting Function
+
 
 def vote(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
@@ -71,21 +74,5 @@ def vote(request, comment_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(comment.id,)))
-
-def index(request):
-    latest_comment_list = Comment.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('polls/index.html')
-    context = {
-        'latest_comment_list': latest_comment_list,
-    }
-    return HttpResponse(template.render(context, request))
-
-def newStatement(request, comment):
-	new_statement = Comment(comment_text="comment")
-	template = loader.get_template('polls/new.html')
-	context = {
-        'new_statement': new_statement,
-    }
-	return HttpResponse(reverse('polls:results'))
 
 # Leave the rest of the views (detail, results, vote) unchanged

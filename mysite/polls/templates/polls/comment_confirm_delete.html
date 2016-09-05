@@ -1,6 +1,10 @@
-<p>Comfirm Delete of Following Statment:</p>
-{{comment.comment_text}}
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+
+<h6>Comfirm Delete of Following Statment:</h6>
+<h1>{{comment.comment_text}}</h1>
 <form method="POST" action="{% url 'polls:comment-delete' comment.id %}">
-   {% csrf_token %}
+   {% csrf_token %} <br>
    <input type="submit" value="DELETE">
 </form>
