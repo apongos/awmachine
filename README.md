@@ -1,6 +1,6 @@
 # awmachine
 
-Website
+See pretty Mock-up and tools tab in awmachine/ and open index.html with a web browser
 
 ## Getting started
 
