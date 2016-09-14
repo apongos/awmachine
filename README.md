@@ -1,6 +1,8 @@
 # awmachine
 
-See pretty Mock-up and tools tab in awmachine/ and open index.html with a web browser
+Project Development Interface for Social Justice and Advocacy Work
+
+To see mock-up, go to awmachine/ and open index.html with web browser. 
 
 ## Getting started
 
